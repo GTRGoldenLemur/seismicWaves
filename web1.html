@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Tectonic Titans</title>
+	<script type="text/javascript" src="web1.js"></script>
+	<link rel="stylesheet" type="text/css" href="web1.css">
+</head>
+<body>
+
+<div id="waves_compare">
+	
+	<div class="wave_track wave_moon" id="wave_track1" onclick="sel_track(0, false)">
+		<button class="change_track" onclick="sel_track(0)"></button>
+	</div>
+	<div class="wave_track wave_earth" id="wave_track2" onclick="sel_track(1, false)">
+		<button class="change_track" onclick="sel_track(1)"></button>
+	</div>
+	<div class="wave_track wave_mars" id="wave_track3" onclick="sel_track(2, false)">
+		<button class="change_track" onclick="sel_track(2)"></button>
+	</div>
+
+	<div id="mobile_wrap_menu">
+		<div id="wave_menu">
+
+			<h1 id="menu_heading">Edit Wave Track 1</h1>
+
+			<div id="planet_sel">
+				<div id="sel_moon" ></div>
+				<div id="sel_earth"></div>
+				<div id="sel_mars"></div>
+
+				<button id="sel_left"> < </button>
+				<button id="sel_right"> > </button>
+			</div>
+
+			<h1 id="seismic_heading">Pick a Moon's seismic wave</h1>
+
+			<div id="seismic_sel">
+				
+			</div>
+		</div>
+
+	</div>
+	<div id="shadow"></div>
+</div>
+
+<div id="scrollTop"></div>
+
+</body>
+</html>

@@ -1,0 +1,297 @@
+:root {
+	--extra-light-blue: #d3d3d6;
+	--light-blue: #9a9ab3;
+	--dark-blue: #141424;
+}
+
+body {
+	height: 180vh;
+	width: 100vw;
+	margin: 0px;
+	overflow-x: hidden;
+	overflow-y: hidden;
+}
+
+body.mobile {
+	overflow-y: scroll;
+	width: calc(100vw - 200px);
+}
+
+button:enabled {
+	cursor: pointer;
+}
+
+#waves_compare {
+	position: fixed;
+	display: grid;
+	grid-template-columns: auto min(300px, 40%);
+	grid-template-rows: 1fr 1fr 1fr;
+	grid-gap: 15px;
+	background-color: var(--dark-blue);
+	height: calc(100% - 30px);
+	width: calc(100% - 30px);
+	padding: 15px;
+	padding-right: 32;
+}
+
+.mobile #waves_compare {
+	grid-template-columns: 1fr;
+}
+
+.wave_track {
+	grid-column: 1 / span 1;
+	background-color: white;
+	border-radius: 8px;
+	padding: 10px;
+	background-repeat: no-repeat, round;
+	background-size: 94vh auto, 80% 100%;
+	border: 0px solid;
+	transition: 0.3s border ease-in-out;
+	width: calc(100% - 20px);
+	position: relative;
+	z-index: 2;
+	filter: brightness(0.8);
+	/*cursor: pointer;*/
+	position: relative;
+}
+
+.wave_moon {
+	background-image: url("Moon.png"), url("StarsBg.jpg");
+}
+
+.wave_earth {
+	background-image: url("Earth.png"), url("StarsBg.jpg");	
+}
+
+.wave_mars {
+	background-image: url("Mars.png"), url("StarsBg.jpg");
+}
+
+#wave_track1 {
+	background-position: 50% 0%, -10% -30%;
+}
+
+#wave_track2 {
+	background-position: 50% 50%, -30% 0%;	
+}
+
+#wave_track3 {
+	background-position: 50% 100%, 30% 30%;
+}
+
+.wave_track.selected_track {
+	border: 3px var(--light-blue) solid;
+	/*border-radius: 8px 0px 0px 8px;*/
+	filter: brightness(1.0);
+}
+
+
+
+.wave_track:hover > button {
+	opacity: 1;
+}
+
+.wave_track > button {
+	opacity: 0;
+	position: absolute;
+	background-color: var(--light-blue);
+	width: 40px;
+	aspect-ratio: 1/1;
+	border-radius: 8px;
+	border: solid 0px;
+	bottom: 10px;
+	right: 10px;
+	transition: all 0.3s ease-in-out;
+}
+
+.change_track {
+	background-image: url("CambiarDark.png");
+	background-size: 30px 30px;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+
+/*.wave_track::before {
+	top: -2px;
+	right: -2px;
+	content: "";
+	position: absolute;
+	height: calc(100% + 4px);
+	width: 0px;
+	background-color: var(--light-blue);	
+	transition: 0.3s ease-in-out all;
+	z-index: 0;
+}
+
+.wave_track.selected_track::before {
+	right: -20px;
+	width: 28px;
+}*/
+
+#mobile_wrap_menu {
+	grid-area: 1 / 2 / span 3 / span 1;	
+	height: 100%;
+	width: 100%;
+	overflow-x: hidden;
+}
+
+#wave_menu {
+	height: calc(100% - 24px);
+	background-color: var(--light-blue);
+	border-radius: 8px;
+	padding: 12px;
+	display: grid;
+	grid-template-columns: 1fr;
+	grid-template-rows: 50px 180px 50px auto;
+	z-index: 5;
+}
+
+.mobile #mobile_wrap_menu{
+	position: absolute;
+	height: 80vh;
+	top: 100vh;
+	left: 0px;
+	background-color: var(--dark-blue);
+	padding: 20px 20px 0px 20px;
+	border-radius: 8px;
+}
+
+.mobile #wave_menu{
+	z-index: 5;
+	border-radius: 8px 8px 0px 0px;
+	grid-template-rows: 40px 140px 40px auto;
+	width: calc(100% - 64px);
+}
+
+#wave_menu > h1#menu_heading {
+	font-size: 28px;
+	color: var(--dark-blue);
+	margin: 5px 0px 0px 0px;
+	height: 100%;
+	text-align: center;
+}
+
+#planet_sel {
+	background-image: url("StarsBg.jpg");
+	border-radius: 8px;
+	height: 100%;
+	width: 100%;
+	grid-area: 2 / 1 / span 1 / span 1;
+	position: relative;
+	background-size: 120% auto;
+	overflow: hidden;
+	display: grid;
+	grid-template-rows: 1fr;
+	grid-template-columns: 100% 100% 100%;
+}
+
+#planet_sel > button {
+	position: absolute;
+	height: 100%;
+	width: 25px;
+	top: 0px;
+	background-color: #ffffff44;
+	color: white;
+	border: none;	
+	transition: 0.3s ease-in-out all;
+	opacity: 0;
+}
+
+#planet_sel:hover > button:enabled{
+	opacity: 1;
+}
+
+#planet_sel > button:hover {
+	background-color: #ffffff66;
+}
+
+
+
+#sel_left {
+	left: 0px;
+}
+
+#sel_right {
+	right: 0px;
+}
+
+#planet_sel > div {
+	background-size: 100% auto;
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+	height: 160px;
+	max-width: 80%;
+	aspect-ratio: 1/1;
+	z-index: 1;
+	margin-top: 10px;
+	justify-self: center;	
+}
+
+#sel_moon {
+	background-image: url("Moon.png");
+}
+
+#sel_mars {
+	background-image: url("Mars.png");
+}
+
+#sel_earth {
+	background-image: url("Earth.png");
+}
+
+
+#wave_menu > #seismic_heading {
+	grid-area: 3 / 1 / span 1 / span 1;
+	color: #141424;
+	font-size: 18px;
+	height: 100%;
+	text-align: center;
+}
+
+#seismic_sel {
+	grid-area: 4 / 1 / span 1 / span 1;
+	max-height: calc(100% - 48px);
+	width: calc(100% - 24px);
+	padding: 12px;
+	display: grid;
+	grid-template-columns: 1fr;
+	background-color: var(--dark-blue);
+	border-radius: 8px;
+	overflow-y: scroll;
+}
+
+#shadow {
+	position: fixed;
+	height: 100%;
+	width: 100%;
+	background-color: black;
+	opacity: 0;
+	transition: opacity 0.4s ease-in-out;
+	top: 100vh;
+	z-index: 2;
+}
+
+#scrollTop {
+	position: absolute;
+	top: 0px;
+	opacity: 0;
+	height: 1px;
+	width: 1px;
+	cursor: pointer;
+}
+
+#seismic_sel > div {
+	height: 30px;
+	width: calc(100% - 36px);
+	padding: 6px;
+	border-radius: 8px;
+	background-color: var(--extra-light-blue);
+	margin: 0px 12px 14px 12px;
+	transition: all 0.2s ease-in-out;
+}
+
+#seismic_sel > div:hover {
+	margin: 0px 0px 14px 0px;
+	padding: 6px 18px 6px 18px;
+}
