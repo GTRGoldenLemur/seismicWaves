@@ -104,6 +104,10 @@ button:enabled {
 	transition: all 0.3s ease-in-out;
 }
 
+.mobile .wave_track > button {
+	opacity: 1;
+}
+
 .change_track {
 	background-image: url("CambiarDark.png");
 	background-size: 30px 30px;
