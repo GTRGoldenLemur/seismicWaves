@@ -31,7 +31,7 @@ function check_phone () {
 	if (b < 1.3) {
 		body.classList.add("mobile")
 		body.appendChild(w)
-		body.style.width = "calc( 100% - "+String(body.offsetWidth - body.clientWidth)
+		//body.style.width = "calc( 100% - "+String(body.offsetWidth - body.clientWidth)
 		var adjust = setTimeout(undefined, 100)
 		body.onscroll = () => {
 			if (w.getBoundingClientRect().top < Math.max(300, window.innerHeight*0.4)) {
@@ -46,7 +46,7 @@ function check_phone () {
 				} else {
 					document.getElementById("scrollTop").scrollIntoView({behavior: "smooth", block: "end"})
 				}
-			}, 300)
+			}, 100)
 		}
 
 		mobile = true
