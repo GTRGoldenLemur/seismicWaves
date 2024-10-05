@@ -8,8 +8,7 @@ body {
 	height: 180vh;
 	width: 100vw;
 	margin: 0px;
-	overflow-x: hidden;
-	overflow-y: hidden;
+	overflow: hidden;
 }
 
 body.mobile {
@@ -149,6 +148,7 @@ button:enabled {
 	grid-template-columns: 1fr;
 	grid-template-rows: 50px 180px 50px auto;
 	z-index: 5;
+	overflow-x: hidden;
 }
 
 .mobile #mobile_wrap_menu{
