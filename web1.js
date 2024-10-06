@@ -1,6 +1,7 @@
-const data = [[, , , , , ], [, , , , , , ], [ , , , , , , , ]]
+const data = [[["https://gtrgoldenlemur.github.io/seismicWaves/data/MoonWave2", "1971-06-11T00:00:00.743943"] , ["https://gtrgoldenlemur.github.io/seismicWaves/data/MoonWave1", "1970-10-26T00:00:00.287943"], ["https://gtrgoldenlemur.github.io/seismicWaves/data/MoonWave3", "1972-11-19T00:00:00.826943"], ["https://gtrgoldenlemur.github.io/seismicWaves/data/MoonWave4", "1972-01-26T00:00:00.488943"], ["https://gtrgoldenlemur.github.io/seismicWaves/data/MoonWave5", "1973-10-03T03:59:12.764190"], ["https://gtrgoldenlemur.github.io/seismicWaves/data/MoonWave6", "1970-09-09T00:00:00.275943"], ["https://gtrgoldenlemur.github.io/seismicWaves/data/MoonWave7", "1971-06-27T00:00:00.381943"], ["https://gtrgoldenlemur.github.io/seismicWaves/data/MoonWave8", "1974-03-14T00:00:00.531943"], ["https://gtrgoldenlemur.github.io/seismicWaves/data/MoonWave9", "1975-05-20T00:00:00.704943"]], [], [["https://gtrgoldenlemur.github.io/seismicWaves/data/MarsWave1", "2019-05-23T02:00:00.082000"], ["https://gtrgoldenlemur.github.io/seismicWaves/data/MarsWave2", "2019-09-21T03:00:00.087000"], ["https://gtrgoldenlemur.github.io/seismicWaves/data/MarsWave3", "2021-12-24T22:00:00.091000"], ["https://gtrgoldenlemur.github.io/seismicWaves/data/MarsWave4", "2022-05-04T23:00:00.098000"], ["https://gtrgoldenlemur.github.io/seismicWaves/data/MarsWave5", "2022-01-02T04:00:00.075000"]]];
 
 var tracks_p = [0, 1, 2]
+var tracks_z = [1, 1, 1]
 var tracks = []
 var tSel = 0
 var ps = ["moon", "earth", "mars"]
@@ -17,6 +18,8 @@ window.onload = () => {
 	sel_track(tSel)
 
 	check_phone();
+
+	//fill_track("https://gtrgoldenlemur.github.io/seismicWaves/data/MoonWave2", 1)
 
 }
 
@@ -60,6 +63,38 @@ function check_phone () {
 
 		mobile = false
 	}
+
+
+	for (var n = 1; n < 4; n++) {
+
+		var canv = document.getElementById("wave_canv_t"+n)
+		var cont = document.getElementById("wave_cont_t"+n)
+
+		var z = tracks_z[n-1]
+
+		canv.style.display = "none"
+		cont.style.maxHeight = ""
+		cont.style.maxWidth = ""
+
+
+		setTimeout( ((cont, canv, z)=>{
+
+			cont.style.maxWidth = cont.getBoundingClientRect().width+"px"
+			cont.style.maxHeight = cont.getBoundingClientRect().height+"px"
+
+			canv.style.height = (cont.getBoundingClientRect().height-20)+"px"
+			canv.style.width = ((cont.getBoundingClientRect().width*z)-20)+"px"
+
+
+		}).bind(null, cont, canv, z), 20)
+
+		setTimeout(((cont, canv, z)=>{
+			canv.style.display = "block"
+		}).bind(null, cont, canv, z), 40)
+		
+	}
+
+
 }
 
 function shadow(b) {
@@ -139,8 +174,10 @@ function getPlanet(n) {
 	var html = ""
 
 	for (var d = 0; d < data[n].length; d++) {
-		html += "<div class=''></div>"
+		html += "<div class='' onclick='fill_track("+'"'+data[n][d][0]+'"'+", "+String(tSel+1)+")'>"+data[n][d][1]+"</div>"
 	}
+
+	html = html || "<p style='color: var(--extra-light-blue);'>No data available for this planet</p>"
 
 	document.getElementById("seismic_sel").innerHTML = html
 
