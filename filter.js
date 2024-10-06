@@ -190,3 +190,18 @@ function zoom(t, r) {
 	check_phone()
 
 }
+
+function clear_track(t) {
+	var c = document.getElementById("wave_canv_t"+String(t))
+
+
+	width = c.width - 40
+	height = c.height - 40
+
+	padding = 20
+
+	ctx = c.getContext("2d");
+
+	ctx.clearRect(0, 0, width, height)
+	
+}
