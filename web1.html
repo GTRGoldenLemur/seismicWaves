@@ -6,20 +6,40 @@
 	<link rel="icon" type="image/x-icon" href="Moon.png">
 	<title>Tectonic Titans</title>
 	<script type="text/javascript" src="web1.js"></script>
+	<script type="text/javascript" src="filter.js"></script>
 	<link rel="stylesheet" type="text/css" href="web1.css">
+	<script src="https://www.gstatic.com/charts/loader.js"></script>
 </head>
 <body>
 
 <div id="waves_compare">
 	
 	<div class="wave_track wave_moon" id="wave_track1" onclick="sel_track(0, false)">
+		<div id="wave_cont_t1" class="wave_cont_t">
+			<canvas id="wave_canv_t1" class="wave_canv_t" width="8224" height="2400" style="display: none;"></canvas>			
+			<div class="loading hide_load"></div>
+		</div>
 		<button class="change_track" onclick="sel_track(0)"></button>
+		<button class="zoom_out" onclick="zoom(0, 0.5)"></button>
+		<button class="zoom_in" onclick="zoom(0, 2)"></button>
 	</div>
 	<div class="wave_track wave_earth" id="wave_track2" onclick="sel_track(1, false)">
+		<div id="wave_cont_t2" class="wave_cont_t">
+			<canvas id="wave_canv_t2" class="wave_canv_t" width="8224" height="2400" style="display: none;"></canvas>			
+			<div class="loading hide_load"></div>
+		</div>
 		<button class="change_track" onclick="sel_track(1)"></button>
+		<button class="zoom_out" onclick="zoom(1, 0.5)"></button>
+		<button class="zoom_in" onclick="zoom(1, 2)"></button>
 	</div>
 	<div class="wave_track wave_mars" id="wave_track3" onclick="sel_track(2, false)">
+		<div id="wave_cont_t3" class="wave_cont_t">
+			<canvas id="wave_canv_t3" class="wave_canv_t" width="8224" height="2400" style="display: none;"></canvas>			
+			<div class="loading hide_load"></div>
+		</div>
 		<button class="change_track" onclick="sel_track(2)"></button>
+		<button class="zoom_out" onclick="zoom(2, 0.5)"></button>
+		<button class="zoom_in" onclick="zoom(2, 2)"></button>
 	</div>
 
 	<div id="mobile_wrap_menu">
