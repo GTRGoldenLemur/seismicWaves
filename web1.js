@@ -160,6 +160,11 @@ function getPlanet(n) {
 		bL.disabled = true
 	}
 
+
+	if (tracks_p[tSel] != n) {
+		clear_track(tSel+1)
+	}
+
 	tracks_p[tSel] = n
 
 	for (var i = 0; i < ps.length; i++) {
