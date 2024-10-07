@@ -96,23 +96,27 @@ function fill_canvas(d, t, time, quakes) {
 
 	g.moveTo(padding, height/2)
 
-	var max_y = 8*10**-9
+	var max_y = 8.5*10**-9
 	ctx.lineWidth = 4
 	var interval= 10
+	var sound_inter = 900
 
 	if (tracks_p[t-1] == 2) {
 		max_y = 3000
 
-		for (var i = 1; i < d.length; i++) {
-			max_y = Math.max(d[i][1], max_y)
-		}
 
 		ctx.lineWidth = 5
 		console.log("Mars detected...")
 		interval = 1
-		max_y*=2
+		sound_inter = 180
 
 	}
+
+	for (var i = 1; i < d.length; i++) {
+		max_y = Math.max(Math.abs(d[i][1]), max_y)
+	}
+	max_y*=2
+
 
 	for (var i = 1; i < d.length; i++) {
 
@@ -139,7 +143,7 @@ function fill_canvas(d, t, time, quakes) {
 	for (var n = 0; n < quakes.length; n++) {
 		q = quakes[n]
 
-		console.log(q)
+		//console.log(q)
 
 		x1 = q[0]/d[ d.length-1 ][0] *width
 		x2 = q[1]/d[ d.length-1 ][0] *width
@@ -166,12 +170,93 @@ function fill_canvas(d, t, time, quakes) {
 		eLine.moveTo(x2, padding)
 		eLine.lineTo(x2, padding+height)
 		ctx.strokeStyle = extra_light_blue
-		ctx.stroke(eLine)		
+		ctx.stroke(eLine)
 
+		document.querySelectorAll("#wave_track"+String(t)+" .listen")[0].disabled = false
+
+		l = document.querySelectorAll("#wave_track"+String(t)+" .time_pos")[0]
+
+		document.querySelectorAll("#wave_track"+String(t)+" .listen")[0].onclick = ((d, max, n, canv)=>{
+
+			var sound = new Pizzicato.Sound({ 
+			    source: 'wave',
+			    options: {
+			        type: 'sawtooth',
+			    }
+			});
+
+			sound.play()
+
+			i = 1
+
+		requestAnimationFrame(play_sound.bind(null, sound, d, max, n, canv, 0))
+
+		}).bind(null, d, max_y, sound_inter, [ctx, g, fillR, sLine, eLine, height, width, c, l])
 
 	}
 
 }
+
+
+function av(d){
+	s = 0
+	for (var i = 0; i < d.length; i++) {
+		s=Math.max(Math.abs(d[i][1]), s)
+	}
+	return s
+}
+
+function play_sound(s, d, max, n, c, i){
+
+	console.log("AnimationFrame")
+
+	max_y = max
+
+	x = d[i][0]/d[ d.length-1 ][0] *c[7].getBoundingClientRect()["width"]
+	y = Math.min((av(d.slice(i, i+n))/(max_y)*1.2)**2+0.05, 1)
+
+	s.volume = y
+
+	c[8].style.left = String(x)+"px"
+	c[8].style.opacity = "1"
+
+
+	ctx = c[0]
+
+	// ctx.clearRect(0, 0, c[6], c[5])
+
+	// //console.log(c)
+
+	// ctx.strokeStyle = light_blue+"dd"
+	// ctx.lineWidth = 4
+	// ctx.stroke(c[1])
+
+	// ctx.fillStyle = dark_blue+"99"
+	// ctx.fill(c[2])
+
+	// ctx.lineWidth = 12
+	// ctx.strokeStyle = extra_light_blue
+	// ctx.stroke(c[3])
+	// ctx.stroke(c[4])
+
+	// now = new Path2D()
+	// now.moveTo(x, 10)
+	// now.lineTo(x, c[5])
+	// ctx.lineWidth = 8
+	// ctx.strokeStyle = "red"
+	// ctx.stroke(now)
+
+	i+=n
+
+	if ( i < d.length) {
+		requestAnimationFrame(play_sound.bind(null, s, d, max, n, c, i))
+	} else {
+		c[8].style.opacity = "0"
+		s.stop()
+	}
+
+}
+
 
 
 function zoom(t, r) {
