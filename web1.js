@@ -15,7 +15,8 @@ window.onload = () => {
 	tracks = [document.getElementById("wave_track1"), document.getElementById("wave_track2"), document.getElementById("wave_track3")]
 	body = document.getElementsByTagName('body')[0]
 
-	sel_track(tSel)
+	sel_track(tSel);
+	document.getElementById("sel_moon").scrollIntoView({"inline": "center", behavior: "smooth"})
 
 	check_phone();
 
@@ -138,6 +139,7 @@ function getPlanet(n) {
 	var bL = document.getElementById("sel_left")
 
 	document.getElementById(["sel_moon", "sel_earth", "sel_mars"][n]).scrollIntoView({"behavior": "smooth", "inline": "center"})
+	console.log(n, document.getElementById(["sel_moon", "sel_earth", "sel_mars"][n]))
 
 	bL.style.left = String(n*100)+"%"
 	bR.style.right = String(-n*100)+"%"
