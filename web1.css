@@ -137,6 +137,12 @@ button:enabled {
 	background-image: url("ZoomOutDark.png");
 }
 
+.listen {
+	right: 160px;
+	bottom: 10px;
+	background-image: url("PlayDark.png");
+}
+
 
 /*.wave_track::before {
 	top: -2px;
@@ -406,3 +412,18 @@ button:enabled {
 .loading.hide_load::before{
 	display: none;
 }
+
+.time_pos {
+	width: 2px;
+	height: 80%;
+	background-color: red;
+	z-index: 3;
+	position: absolute;
+	top: 10%;
+	left: 0px;
+	outline: none;
+	opacity: none;
+	transition: opacity 0.4s ease-in-out;
+}
+
+
